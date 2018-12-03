@@ -14,9 +14,9 @@
 
 ARG LARADOCK_PHP_VERSION
 
-FROM laradock/php-fpm:2.2-${LARADOCK_PHP_VERSION}
+FROM craictech/php-fpm:${LARADOCK_PHP_VERSION}
 
-LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
+LABEL maintainer="Rico Bartoschak <rico.bartoschak@gmail.com>"
 
 ARG LARADOCK_PHP_VERSION
 

@@ -7,7 +7,7 @@
 ARG PHP_VERSION=${PHP_VERSION}
 FROM php:${PHP_VERSION}-alpine
 
-LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
+LABEL maintainer="Rico Bartoschak <rico.bartoschak@gmail.com>"
 
 RUN apk --update add wget \
   curl \

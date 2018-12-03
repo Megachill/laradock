@@ -14,9 +14,9 @@
 
 ARG LARADOCK_PHP_VERSION
 
-FROM laradock/workspace:2.2-${LARADOCK_PHP_VERSION}
+FROM craictech/workspace:${LARADOCK_PHP_VERSION}
 
-LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
+LABEL maintainer="Rico Bartoschak"
 
 ARG LARADOCK_PHP_VERSION
 
