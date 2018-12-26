@@ -1,5 +1,7 @@
 FROM nginx:alpine
 
+LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
+
 COPY nginx.conf /etc/nginx/
 
 # If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.
@@ -24,6 +26,7 @@ RUN echo "upstream php-upstream { server ${PHP_UPSTREAM_CONTAINER}:${PHP_UPSTREA
     && rm /etc/nginx/conf.d/default.conf
 
 ADD ./startup.sh /opt/startup.sh
-CMD ["/bin/bash", "/opt/startup.sh"]
+RUN sed -i 's/\r//g' /opt/startup.sh
+# CMD ["/bin/bash", "/opt/startup.sh"]
 
 EXPOSE 80 443
