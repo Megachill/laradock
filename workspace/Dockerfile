@@ -878,6 +878,19 @@ RUN if [ $INSTALL_PHALCON = true ]; then \
 ;fi
 
 ###########################################################################
+# MySQL Client:
+###########################################################################
+
+USER root
+
+ARG INSTALL_MYSQL_CLIENT=false
+
+RUN if [ ${INSTALL_MYSQL_CLIENT} = true ]; then \
+    apt-get update -yqq && \
+    apt-get -y install mysql-client \
+;fi
+
+###########################################################################
 # Check PHP version:
 ###########################################################################
 
@@ -889,12 +902,17 @@ RUN php -v | head -n 1 | grep -q "PHP ${LARADOCK_PHP_VERSION}."
 #--------------------------------------------------------------------------
 #
 
+USER root
+
 # Clean up
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm /var/log/lastlog /var/log/faillog
 
+<<<<<<< HEAD
 USER root
 
+=======
+>>>>>>> upstream/master
 # Set default work directory
 WORKDIR /var/www
