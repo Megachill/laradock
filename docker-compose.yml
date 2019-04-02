@@ -108,6 +108,7 @@ services:
           - TZ=${WORKSPACE_TIMEZONE}
           - BLACKFIRE_CLIENT_ID=${BLACKFIRE_CLIENT_ID}
           - BLACKFIRE_CLIENT_TOKEN=${BLACKFIRE_CLIENT_TOKEN}
+          - INSTALL_POWERLINE=${WORKSPACE_INSTALL_POWERLINE}
       volumes:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       extra_hosts:
@@ -199,6 +200,7 @@ services:
           - INSTALL_MYSQL_CLIENT=${PHP_WORKER_INSTALL_MYSQL_CLIENT}
           - INSTALL_AMQP=${PHP_WORKER_INSTALL_AMQP}
           - INSTALL_GHOSTSCRIPT=${PHP_WORKER_INSTALL_GHOSTSCRIPT}
+          - INSTALL_SWOOLE=${PHP_WORKER_INSTALL_SWOOLE}
           - PUID=${PHP_WORKER_PUID}
           - PGID=${PHP_WORKER_PGID}
       volumes:
@@ -594,11 +596,15 @@ services:
 
 ### pgAdmin ##############################################
     pgadmin:
-      build: ./pgadmin
+      container_name: pgadmin
+      image: dpage/pgadmin4:latest
+      environment:
+        - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}"
+        - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}"
       ports:
-        - "5050:5050"
+        - "${PGADMIN_PORT}:80"
       volumes:
-        - ${DATA_PATH_HOST}/pgadmin-backup:/var/lib/pgadmin/storage/pgadmin4
+        - ${DATA_PATH_HOST}/pgadmin:/var/lib/pgadmin
       depends_on:
         - postgres
       networks:
