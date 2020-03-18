@@ -18,7 +18,6 @@ entryPoint = "https"
 onHostRule = true
   [acme.httpChallenge]
     entryPoint = "http"
-  [[acme.domains]]
-    main = "localhost"
-  [[acme.domains]]
-    main = "traefik.local.test"
+
+[[acme.domains]]
+  main = "localhost"
